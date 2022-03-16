@@ -1,0 +1,74 @@
+body {
+  /* background-image: url('res/background.jpg'); */
+}
+
+.container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.con-time {
+  text-align: center;
+}
+
+
+
+.c-select {
+  height: 40px;
+  width: fit-content;
+  font-size: large;
+  /* Center vertically and horizontally */
+  position: sticky;
+
+  /* Apply negative top and left margins to truly center the element */
+
+}
+
+#analog {
+  position: relative;
+  margin-left: 10px;
+  margin-right: 30px;
+  height: 200px;
+  /*to make the height and width responsive*/
+  width: 200px;
+  background: url('res/clock.jpg') no-repeat;
+  /*setting our background image*/
+  background-size: 100%;
+  margin-top: 30px;
+}
+
+#hour,
+#minute,
+#second {
+  position: absolute;
+  background: black;
+  border-radius: 10px;
+  transform-origin: bottom;
+}
+
+#hour {
+  width: 1.8%;
+  height: 25%;
+  top: 25%;
+  left: 48.85%;
+  opacity: 0.8;
+}
+
+#minute {
+  width: 1.6%;
+  height: 30%;
+  top: 19%;
+  left: 48.9%;
+  opacity: 0.8;
+}
+
+#second {
+  width: 1%;
+  height: 40%;
+  top: 9%;
+  left: 49.25%;
+  opacity: 0.8;
+}
