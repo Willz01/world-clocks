@@ -3,23 +3,47 @@ body {
 }
 
 .container {
-  margin-top: 50px;
+  margin-top: 38px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.con-time {
+.new-city {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(211, 210, 210);
+  border: 1px gray dashed;
+}
+
+.city-name {
+  height: 30px;
+  width: 120px;
+  margin: 10px;
+}
+
+.timezone {
+  height: 30px;
+  width: fit-content;
+  margin: 10px;
+}
+
+.timezone-display {
   text-align: center;
 }
 
+.btn {
+  margin: 10px;
+  height: 30px;
+}
 
 
 .c-select {
-  height: 40px;
+  height: 30px;
   width: fit-content;
-  font-size: large;
+  font-size: medium;
   /* Center vertically and horizontally */
   position: sticky;
 
@@ -29,8 +53,8 @@ body {
 
 #analog {
   position: relative;
-  margin-left: 10px;
-  margin-right: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
   height: 200px;
   /*to make the height and width responsive*/
   width: 200px;
@@ -71,4 +95,10 @@ body {
   top: 9%;
   left: 49.25%;
   opacity: 0.8;
+}
+
+@media only screen and (max-width: 480px) {
+  .new-city {
+    flex-direction: column;
+  }
 }

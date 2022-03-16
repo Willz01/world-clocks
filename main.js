@@ -1,5 +1,6 @@
 const container = document.querySelector('.con')
-const timeContainer = document.querySelector('.con-time')
+const timeContainer = document.querySelector('.timezone-display')
+const cityName = document.querySelector('.city')
 
 let intervalID
 
@@ -8,7 +9,7 @@ let intervalID
 //   document.querySelector('.digital').innerText = new Date().toLocaleTimeString()
 // }, 1000)
 
-document.querySelector('.con-time').innerText = 'Time zone: ' + Intl.DateTimeFormat().resolvedOptions().timeZone
+document.querySelector('.timezone-display').innerText = 'Time zone: ' + Intl.DateTimeFormat().resolvedOptions().timeZone
 document.body.style.zoom = 1.2; this.blur();
 
 async function fetchTimeZones() {
@@ -96,7 +97,7 @@ async function fillSelectList() {
   for (var i = 0; i < countries.length; i++) {
     var option = document.createElement("option");
     console.log(countries[i].getZone());
-    option.value = countries[i].getZone()
+    option.value = countries[i].getZone() + ' ' + countries[i].getCountryName()
     option.text = countries[i].getCountryName()
     selectList.appendChild(option);
   }
@@ -107,11 +108,12 @@ fillSelectList()
 
 
 document.querySelector('.c-select').onchange = function () {
-  let textCon = document.querySelector('.con-time')
-  alert(this.value);
-  textCon.innerText = 'Time zone: ' + this.value
+  let textCon = document.querySelector('.timezone-display')
+  cityName.style.color = 'grey'
+  cityName.innerText = (this.value.split(' ')[1])                // city name
+  textCon.innerText = 'Time zone: ' + this.value.split(' ')[0]   // timezone
   clearInterval(intervalID)
-  setTime(this.value)
+  setTime(this.value.split(' ')[0])
 }
 
 

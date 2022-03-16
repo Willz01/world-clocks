@@ -1,4 +1,4 @@
 const ct = require('countries-and-timezones');
 
-const country = ct.getCountry('DE');
-console.log(country);
+const country = ct.getAllTimezones()
+console.log(typeof country);
