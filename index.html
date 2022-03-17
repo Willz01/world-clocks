@@ -19,28 +19,29 @@
     <h3 class="timezone-display"></h3>
     <h2 class="city"></h2>
 
+    <label for="c-select">Default cities and timezones</label>
     <select name="place" id="c-select" class="c-select">
-      <option value="">--- Please select a city ---</option>
+      <option value="">Please select a city</option>
     </select>
     <br>
-    <div class="new-city">
+    <form class="new-city">
 
-      <input type="text" name="city-name" id="city" class="city-name" placeholder="Enter a city name">
-      <select name="timezone" id="timezone" class="timezone">
-        <option value="">---Please select a timezone---</option>
+      <input type="text" name="city-name" id="city" class="city-name" placeholder="Enter a city name" required>
+      <select name="timezone" id="timezone" class="timezone" required>
+        <option value="">Please select a timezone</option>
       </select>
-      <button class="btn">--- Add ---</button>
-    </div>
-    <br>
+      <button class="btn" type="submit"> Add </button>
+    </form>
+    <label for="saved-cities">Saved cities and timezones</label>
+    <select name="saved-cities" id="saved-cities" class="saved-cities" required>
+      <option value="">Saved timezones</option>
+    </select>
 
   </div>
 
 
-
-
-
-
   <script src="main.js"></script>
+
 </body>
 
 </html>

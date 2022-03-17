@@ -24,10 +24,20 @@ body {
   margin: 10px;
 }
 
+.city {
+  margin: 2px;
+}
+
 .timezone {
   height: 30px;
   width: fit-content;
   margin: 10px;
+  text-align: center;
+}
+
+.saved-cities {
+  height: 30px;
+  width: fit-content;
 }
 
 .timezone-display {
@@ -37,6 +47,14 @@ body {
 .btn {
   margin: 10px;
   height: 30px;
+  background-color: rgb(41, 41, 194);
+  color: aliceblue;
+  width: 70px;
+}
+
+.saved-cities {
+  width: 150px;
+  text-align: center;
 }
 
 
@@ -46,9 +64,13 @@ body {
   font-size: medium;
   /* Center vertically and horizontally */
   position: sticky;
-
+  text-align: center;
   /* Apply negative top and left margins to truly center the element */
 
+}
+
+.digital {
+  color: grey;
 }
 
 #analog {
@@ -61,7 +83,7 @@ body {
   background: url('res/clock.jpg') no-repeat;
   /*setting our background image*/
   background-size: 100%;
-  margin-top: 30px;
+
 }
 
 #hour,

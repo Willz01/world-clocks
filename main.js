@@ -1,15 +1,15 @@
 const container = document.querySelector('.con')
 const timeContainer = document.querySelector('.timezone-display')
 const cityName = document.querySelector('.city')
+const tz_display = document.querySelector('.timezone-display')
 
 let intervalID
-
+let zones = []
 // setInterval(() => {
 
 //   document.querySelector('.digital').innerText = new Date().toLocaleTimeString()
 // }, 1000)
-
-document.querySelector('.timezone-display').innerText = 'Time zone: ' + Intl.DateTimeFormat().resolvedOptions().timeZone
+tz_display.innerText = 'Time zone: ' + Intl.DateTimeFormat().resolvedOptions().timeZone
 document.body.style.zoom = 1.2; this.blur();
 
 async function fetchTimeZones() {
@@ -22,8 +22,10 @@ async function fetchTimeZones() {
   // console.log(getDate(countries[0].TimeZones[0]));
   let countryObjs = []
 
+
   for (let c of countries) {
     let zone = scrapZone(c)
+    zones.push(zone)
     const dateTime = getDateTime(zone)
     const cName = scrapCountryName(c)
 
@@ -35,15 +37,25 @@ async function fetchTimeZones() {
     // console.log(dateTime, cName);
   }
 
+  fillTimeZones(zones)
+  console.log('zones:', zones);
+  console.log('size:', zones.length);
+
   // console.log('Size', countryObjs.length);
   return countryObjs
 }
+
 
 function getZone(countries, index) {
   for (var i = 0; i < countries.length; i++) {
     if (i == index)
       return countries[i].TimeZones
   }
+}
+
+
+function getZones() {
+  return zones;
 }
 
 class TimePlace {
@@ -104,6 +116,19 @@ async function fillSelectList() {
 }
 
 fillSelectList()
+
+function fillTimeZones(zones) {
+  var zoneSelect = document.querySelector('.timezone')
+  console.log(zoneSelect);
+
+
+  for (var i = 0; i < zones.length; i++) {
+    var option = document.createElement("option");
+    option.text = zones[i]
+    option.value = zones[i]
+    zoneSelect.appendChild(option)
+  }
+}
 
 
 
@@ -206,3 +231,65 @@ function setTime(timeZone) {
 }
 
 setTime(null)
+
+
+// storage
+function checkStorage() {
+
+}
+
+function save(cityName, timezone) {
+  var obj = {
+    name: cityName, tz: timezone
+  }
+  console.log(obj);
+
+  let savedList = JSON.parse(getSavedCities()) || []
+  savedList.push(obj)  // update
+
+  localStorage.setItem('saved-cities', JSON.stringify(savedList))   // save
+}
+
+
+function getSavedCities() {
+  let cities = localStorage.getItem('saved-cities')
+  return cities;
+}
+
+
+// saving city and tz
+
+document.querySelector('.new-city').addEventListener('submit', (event) => {
+  event.preventDefault()
+  let data = new FormData(document.querySelector('.new-city'))
+
+  let cityName = data.get('city-name')
+  let tz = data.get('timezone')
+
+  save(cityName, tz)
+  console.log(cityName);
+})
+
+function readStorage() {
+  let data = localStorage.getItem('saved-cities')
+  let json = JSON.parse(data)
+
+  var savedCitiesSelect = document.querySelector('.saved-cities')
+  for (let city of json) {
+    var option = document.createElement("option");
+    option.text = city.name
+    option.value = city.tz + ' ' + city.name
+
+    savedCitiesSelect.appendChild(option)
+  }
+  console.log(json);
+}
+readStorage()
+
+document.querySelector('.saved-cities').onchange = function () {
+  clearInterval(intervalID)
+  cityName.style.color = 'grey'
+  cityName.innerText = (this.value.split(' ')[1])
+  setTime(this.value.split(' ')[0])
+  tz_display.innerText = 'Time zone: ' + this.value.split(' ')[0]
+}
