@@ -33,6 +33,7 @@ body {
   width: fit-content;
   margin: 10px;
   text-align: center;
+
 }
 
 .saved-cities {
@@ -42,6 +43,7 @@ body {
 
 .timezone-display {
   text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .btn {
